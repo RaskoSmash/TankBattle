@@ -121,7 +121,9 @@ int main(int argc, char** argv)
 			ex.tankMove = tankNet::TankMovementOptions::HALT;
 			ex.cannonMove = tankNet::CannonMovementOptions::HALT;
 
-			if (humanControlled = true)
+			if (sfw::getKey(' ')) humanControlled = true;
+			if (sfw::getKey('M')) humanControlled = false;
+			if (humanControlled == true)
 			{
 				// poll for input
 				if (inputPressed())
@@ -147,9 +149,10 @@ int main(int argc, char** argv)
 					}
 				}
 			}
-
-			ex = agent.update(state);
-
+			else
+			{
+				ex = agent.update(state, sfw::getDeltaTime());
+			}
 			// begin transmission
 			tankNet::send(ex);
 		}
