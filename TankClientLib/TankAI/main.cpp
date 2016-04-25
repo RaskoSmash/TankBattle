@@ -149,10 +149,8 @@ int main(int argc, char** argv)
 					}
 				}
 			}
-			else
-			{
-				ex = agent.update(state, sfw::getDeltaTime());
-			}
+			else ex = agent.update(state, sfw::getDeltaTime());
+
 			// begin transmission
 			tankNet::send(ex);
 		}
