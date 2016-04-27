@@ -1,6 +1,6 @@
 #pragma once
 #include "../TankBattle-net/TankBattleHeaders.h"
-
+#include "../TankBattle-client-dyad-sfw/Vector2.h"
 
 class Agent
 {
@@ -13,11 +13,16 @@ class Agent
 	//For each enemy not vectors
 	float distanceBetween[3];
 	float angleBetween[3];
-	int	enemyInSight[3];
+
 
 	//Steering
 	tankNet::TankBattleCommand move;
 	float scanTimer = 0;
+	float randTimer = 0;
+
+	// Active target location to pursue either rand location or an enemy tank
+	Vector2 randtarget;
+	Vector2 tanktarget;
 
 
 	////////Turrent States properties
@@ -28,17 +33,18 @@ class Agent
 	
 	//Tank State properties
 	enum CurrentState {EXPLORE, EVADE, PURSUIT, FLANK} tankState = EXPLORE;
-	void Explore();
+	void Explore(const float deltaTime);
 	void Evade();
 	void Pursuit();
 	void Flank();
 
 	//Logic Functions
-	void steerToLocation(const float *location);
-	void aimAtLocation(const float *location);
+	void steerToLocation(const Vector2 &currentPos, const Vector2 &currentFor, const Vector2 &location);
+	void aimAtLocation(const Vector2 location);
 	void reverse();
-	void evadeLocation(const float *location);
-	void blendBetweenLocations(const float *location1, const float *location2);
+	void evadeLocation(const Vector2 location);
+	void blendBetweenLocations(const Vector2 location1, const Vector2 location2);
+	void CheckCollision(float threshold);
 
 public:
 

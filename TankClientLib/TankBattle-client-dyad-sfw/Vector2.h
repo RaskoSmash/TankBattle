@@ -43,7 +43,7 @@ inline Vector2 operator-(const Vector2 &a)            { return a * -1;          
 // vector of length 1
 inline Vector2 normal   (const Vector2 &a)            { return a / magnitude(a);  }
 
-Vector2 Vector2::random()
+inline Vector2 Vector2::random()
 {
     return normal(Vector2{ 1 - 2 * (float)rand() / RAND_MAX, 1 - 2 * (float)rand() / RAND_MAX });
 }
@@ -75,7 +75,7 @@ inline Vector2 reflect(const Vector2 &incident, const Vector2 &normal) { return 
 inline float angle(const Vector2 &a, const Vector2 &b) { return dot(a, b) / (magnitude(a)*magnitude(b)); }
 
 // calculate the angle of a 2D vector
-float angle(const Vector2 &a) { return atan2f(a.y, a.x); }
+inline float angle(const Vector2 &a) { return atan2f(a.y, a.x); }
 
 // there is no 2D cross product, this is actually the perpendicular dot product.
 // negative values mean b is to the "left" of a and positive values mean b is to the "right" of a.

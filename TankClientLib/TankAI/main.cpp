@@ -40,7 +40,8 @@ bool inputPressed()
 int main(int argc, char** argv)
 {
 	bool humanControlled = false;
-	char * serverIPAddress = "";
+//	char * serverIPAddress = "";
+	char * serverIPAddress = "10.15.22.31";
 
 	Agent agent;
 	// handle console arguments
